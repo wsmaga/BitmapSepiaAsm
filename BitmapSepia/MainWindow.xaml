@@ -1,0 +1,99 @@
+﻿<Window x:Class="BitmapSepia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BitmapSepia"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="BitmapSepia" Height="720" Width="1280">
+
+    <Window.Resources>
+        <sys:Double x:Key="smallMarginVal">2</sys:Double>
+        <Thickness
+            x:Key="smallMargin"
+            Top="{StaticResource smallMarginVal}"
+            Right="{StaticResource smallMarginVal}"
+            Bottom="{StaticResource smallMarginVal}"
+            Left="{StaticResource smallMarginVal}"
+        />
+    </Window.Resources>
+    
+    <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Column="0"
+            Background="Red"
+        >
+
+            <!-- Choose image file -->
+            <StackPanel
+                Margin="{StaticResource smallMargin}"
+                HorizontalAlignment="Left"
+            >
+                <TextBlock
+                    FontWeight="Bold"
+                    Margin="{StaticResource smallMargin}"
+                >
+                    Choose image file
+                </TextBlock>
+                <Button
+                    x:Name="Button_ChooseFile"
+                    Content="Choose..."
+                    Margin="{StaticResource smallMargin}"
+                    Click="Button_ChooseFile_Click"
+                    Width="100"
+                />
+            </StackPanel>
+
+            <!-- Choose no. of threads -->
+            <StackPanel
+                Margin="{StaticResource smallMargin}"
+                Orientation="Vertical"
+                HorizontalAlignment="Left"
+            >
+                <TextBlock
+                    FontWeight="Bold"
+                    Margin="{StaticResource smallMargin}"
+                >
+                    Choose no. of threads
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="{StaticResource smallMargin}"
+                        Text="Logic threads in system detected: "
+                    />
+                    <TextBlock
+                        Text="{Binding NumberOfThreads}"
+                        Margin="{StaticResource smallMargin}"
+                        MinWidth="20"
+                    />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Slider
+                        x:Name="Slider_NumberOfThreadsPicked"
+                        Maximum="64"
+                        Minimum="1"
+                        TickFrequency="1"
+                        MinWidth="200"
+                        Value="{Binding NumberOfThreadsPicked, Mode=TwoWay}"
+                        Margin="{StaticResource smallMargin}"
+                    />
+                    <TextBlock
+                        Text="{Binding NumberOfThreadsPicked}"
+                        Margin="{StaticResource smallMargin}"
+                        MinWidth="20"
+                    />
+                </StackPanel>
+                
+
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
